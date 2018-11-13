@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Project: TINHIS. -->
+<!-- activity_main.xml  ||  Layout information of Main Activity. -->
+<!-- Revisions: -->
+<!-- 2018-11-11 ||  F.R. van der Meulen ||  Created. -->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/actMainTotalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" >
+
+        <TextView
+            android:id="@+id/actMainWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/welcome"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/actMainAppVer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="55dp"
+            android:textSize="12sp"
+            android:text="@string/app_ver"/>
+
+        <TextView
+            android:id="@+id/actMainBTDeviceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/actMainWelcome"
+            android:layout_marginTop="25dp"
+            android:text="@string/device_selection_text"
+            android:textSize="30sp" />
+
+        <View
+            android:id="@+id/actMainSelectDeviceDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/actMainBTDeviceText"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/actMainBTDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/actMainSelectDeviceDivider"
+            android:layout_centerHorizontal="true"
+            android:text="@string/device_selection"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/actMainSelectDeviceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/actMainBTDevice"
+            android:layout_centerHorizontal="true"
+            android:text="@string/select_device_button_text"/>
+
+        <Button
+            android:id="@+id/actMainDoneButton"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="50sp"
+            android:text="@string/ready"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/actMainAllSetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/actMainDoneButton"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="@string/all_set"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

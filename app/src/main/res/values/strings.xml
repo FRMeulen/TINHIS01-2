@@ -1,0 +1,25 @@
+<!-- Project: TINHIS. -->
+<!-- strings.xml    ||  Contains string values. -->
+<!-- Revisions: -->
+<!-- 2018-11-11 ||  F.R. van der Meulen ||  Created. -->
+
+<resources>
+    <string name="app_name">TINHIS</string>
+    <string name="app_ver">App version 1.0</string>
+    <string name="welcome">Welcome!</string>
+    <string name="device_selection_text">Currently selected device</string>
+    <string name="device_selection">NONE</string>
+    <string name="select_device_button_text">SELECT DEVICE</string>
+    <string name="all_set">Connection all set!</string>
+    <string name="ready">READY</string>
+    <string name="on_off">Bluetooth On/Off!</string>
+    <string name="list_devices">Discover Devices!</string>
+    <string name="bt_selected_text">Selected: </string>
+    <string name="bt_selected">NONE</string>
+    <string name="select">Select!</string>
+    <string name="reset">Reset app</string>
+    <string name="visitor_log">Visitor log</string>
+    <string name="visitor_counter_text">Current visitors:</string>
+    <string name="visitor_counter">0</string>
+    <string name="selected_device_text">Selected device:</string>
+</resources>

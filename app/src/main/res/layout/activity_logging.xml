@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Project: TINHIS. -->
+<!-- activity_logging.xml  ||  Layout information of Logging Activity. -->
+<!-- Revisions: -->
+<!-- 2018-11-11 ||  F.R. van der Meulen ||  Created. -->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoggingActivity">
+
+    <RelativeLayout
+        android:id="@+id/actLoggingTotalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/actLoggingLoggingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="50sp"
+            android:text="@string/visitor_log"/>
+
+        <LinearLayout
+            android:id="@+id/actLoggingSelectedDeviceLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/actLoggingLoggingText"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/actLoggingSelectedDeviceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/selected_device_text"/>
+
+            <TextView
+                android:id="@+id/actLoggingSelectedDevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/device_selection"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/actLoggingTimestampList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/actLoggingSelectedDeviceLayout"
+            android:layout_above="@id/actLoggingCounterLayout"/>
+
+        <LinearLayout
+            android:id="@+id/actLoggingCounterLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/actLoggingResetButton"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/actLoggingCounterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/visitor_counter_text"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/actLoggingCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/visitor_counter"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/actLoggingResetButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="15sp"
+            android:text="@string/reset"/>
+
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

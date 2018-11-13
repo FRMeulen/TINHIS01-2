@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Project: TINHIS. -->
+<!-- activity_selection.xml  ||  Layout information of Selection Activity. -->
+<!-- Revisions: -->
+<!-- 2018-11-11 ||  F.R. van der Meulen ||  Created. -->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectionActivity">
+
+    <RelativeLayout
+        android:id="@+id/actSelectTotalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/actSelectButtonLayoutOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/actSelectOnOffButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/on_off"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+
+            <Button
+                android:id="@+id/actSelectListButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/list_devices"
+                android:visibility="invisible"
+                style="?android:attr/buttonBarButtonStyle"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actSelectBt_selected_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/bt_selected_text"
+            android:layout_below="@id/actSelectButtonLayoutOne"
+            android:visibility="invisible"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/actSelectBt_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/actSelectBt_selected_text"
+            android:layout_alignBottom="@+id/actSelectBt_selected_text"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/actSelectBt_selected_text"
+            android:layout_toRightOf="@+id/actSelectBt_selected_text"
+            android:text="@string/bt_selected"
+            android:layout_below="@+id/actSelectButtonLayoutOne"
+            android:visibility="invisible"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/actSelectDeviceList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:layout_below="@+id/actSelectBt_selected_text"
+            android:layout_above="@id/actSelectSelectButton"/>
+
+        <Button
+            android:id="@+id/actSelectSelectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/select"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
