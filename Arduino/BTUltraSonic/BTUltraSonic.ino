@@ -9,7 +9,6 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 #define trigPinOne 3
 #define echoPinOne 4
 #define pingPin 6
-#define ledPin 2
 
 //  Variables.
 long durationOne;
@@ -27,10 +26,8 @@ long timer = 0;
 
 //  Setup code.
 void setup() {
-  pinMode(ledPin, OUTPUT);
   pinMode(echoPinOne, INPUT);
   pinMode(trigPinOne, OUTPUT);
-  digitalWrite(ledPin, LOW);
   digitalWrite(trigPinOne, LOW);
   Serial.begin(38400);
 
@@ -74,8 +71,6 @@ void loop() {
 
   //  Act on results.
   if (distanceOne < 100) {
-    //  Turn on LED.
-    digitalWrite(ledPin, HIGH);
     ultrasonicOne = true;
     if (timestamp.equals("")) {
       timestamp = "enter";
@@ -83,22 +78,17 @@ void loop() {
     
     //Serial.println(timestamp);
     //Serial.println("distanceOne");
-    delay(500);
+    delay(50);
   } else if (distanceTwo < 100) {
-    //  Turn on LED.
-    digitalWrite(ledPin, HIGH);
     ultrasonicTwo = true;
     if (timestamp.equals("")) {
       timestamp = "leave";
     }
     
-    //Serial.println(timestamp);
-    Serial.println("distanceTwo");
-    Serial.println(distanceTwo);
-    delay(500);
+    //Serial.println("distanceTwo");
+    //Serial.println(distanceTwo);
+    delay(50);
   } else {
-    //  If no object detected, turn off LED and wait.
-    digitalWrite(ledPin, LOW);
     if (ultrasonicOne || ultrasonicTwo) {
       timer++;
     }
