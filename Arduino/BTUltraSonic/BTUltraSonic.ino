@@ -16,8 +16,14 @@ long durationOne;
 int distanceOne;
 long durationTwo;
 int distanceTwo;
-String timestamp;
+String timestamp = "";
 int customers = 0;
+
+//  Booleans for the logics
+bool ultrasonicOne = false;
+bool ultrasonicTwo = false;
+
+long timer = 0;
 
 //  Setup code.
 void setup() {
@@ -31,7 +37,13 @@ void setup() {
   lcd.begin();
   lcd.backlight();
 
-  timestamp = "enter";
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Customers: ");
+  lcd.setCursor(11, 0);
+  lcd.print(customers);
+
+  //timestamp = "enter";
 }
 
 //  Loop code.
@@ -64,32 +76,61 @@ void loop() {
   if (distanceOne < 100) {
     //  Turn on LED.
     digitalWrite(ledPin, HIGH);
-    customers++;
+    ultrasonicOne = true;
+    if (timestamp.equals("")) {
+      timestamp = "enter";
+    }
     
-    Serial.println(timestamp);
-    Serial.println("distanceOne");
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Customers: ");
-    lcd.setCursor(11, 0);
-    lcd.print(customers);
+    //Serial.println(timestamp);
+    //Serial.println("distanceOne");
     delay(500);
   } else if (distanceTwo < 100) {
     //  Turn on LED.
     digitalWrite(ledPin, HIGH);
-    customers++;
+    ultrasonicTwo = true;
+    if (timestamp.equals("")) {
+      timestamp = "leave";
+    }
     
-    Serial.println(timestamp);
+    //Serial.println(timestamp);
     Serial.println("distanceTwo");
     Serial.println(distanceTwo);
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Customers: ");
-    lcd.setCursor(11, 0);
-    lcd.print(customers);
     delay(500);
   } else {
     //  If no object detected, turn off LED and wait.
     digitalWrite(ledPin, LOW);
+    if (ultrasonicOne || ultrasonicTwo) {
+      timer++;
+    }
+    if (ultrasonicOne && ultrasonicTwo) {
+      if (timestamp != "") {
+        Serial.println(timestamp);
+        if (timestamp.equals("enter")) {
+          customers++;
+        }
+        else if (timestamp.equals("leave")) {
+          if (customers > 0) {
+            customers--;
+          }
+        }
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Customers: ");
+        lcd.setCursor(11, 0);
+        lcd.print(customers);
+      }
+      timer = 0;
+      ultrasonicOne = false;
+      ultrasonicTwo = false;
+      timestamp = "";
+    }
+    if (timer > 100) {
+      timer = 0;
+      ultrasonicOne = false;
+      ultrasonicTwo = false;
+      timestamp = "";
+      //Serial.println("trigger ended");
+    }
+    delay(10);
   }
 }
