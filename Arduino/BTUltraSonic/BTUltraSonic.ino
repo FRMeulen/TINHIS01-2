@@ -78,6 +78,7 @@ void loop() {
     
     //Serial.println(timestamp);
     //Serial.println("distanceOne");
+    //Serial.println(distanceOne);
     delay(50);
   } else if (distanceTwo < 100) {
     ultrasonicTwo = true;
