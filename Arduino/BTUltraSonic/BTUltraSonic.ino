@@ -1,3 +1,8 @@
+//  Project: TINHIS.
+//  BTUltraSonic.ino  --  Arduino source file.
+//  Revisions:
+//    2018-11-11  --  F.R. van der Meulen --  Created.
+
 //  Definitions.
 #define trigPin 3
 #define echoPin 4

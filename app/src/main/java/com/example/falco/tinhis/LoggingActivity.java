@@ -152,6 +152,9 @@ public class LoggingActivity extends AppCompatActivity {
     //  Returns:    void.
     public void updateVisitorCount(int count) {
         m_visitorCount += count;
+        if (m_visitorCount < 0){
+            m_visitorCount = 0;
+        }
         String displayCount = ""+m_visitorCount;
         m_visitorCounterTextView.setText(displayCount);
     }
