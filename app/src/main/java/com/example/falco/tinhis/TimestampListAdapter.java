@@ -71,13 +71,13 @@ public class TimestampListAdapter extends ArrayAdapter<String> {
         strTime = m_time.format(new Date());
         if (timestamp.equals("enter")) {
             //  Set string.
-            strInOut = ">";
+            strInOut = "    >";
 
             //  Log.
             Log.i(TAG, "customer arrived.");
         } else if (timestamp.equals("leave")) {
             //  Set string.
-            strInOut = "<";
+            strInOut = "    <";
 
             //  Log.
             Log.i(TAG, "customer left.");
