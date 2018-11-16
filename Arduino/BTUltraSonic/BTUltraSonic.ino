@@ -2,53 +2,132 @@
 //  BTUltraSonic.ino  --  Arduino source file.
 //  Revisions:
 //    2018-11-11  --  F.R. van der Meulen --  Created.
+//    2018-11-14  --  J. de Wilde         --  Edited.
+
+//  Librabies
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+
+//  Set the LCD address to 0x3F for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
 //  Definitions.
-#define trigPin 3
-#define echoPin 4
-#define ledPin 2
+#define trigPinOne 3
+#define echoPinOne 4
+#define pingPin 6
 
 //  Variables.
-long duration;
-int distance;
-String timestamp;
+long durationOne;
+int distanceOne;
+long durationTwo;
+int distanceTwo;
+String timestamp = "";
+int customers = 0;
+
+//  Booleans for the logics
+bool ultrasonicOne = false;
+bool ultrasonicTwo = false;
+
+long timer = 0;
 
 //  Setup code.
 void setup() {
-  pinMode(ledPin, OUTPUT);
-  pinMode(echoPin, INPUT);
-  pinMode(trigPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
-  digitalWrite(trigPin, LOW);
+  pinMode(echoPinOne, INPUT);
+  pinMode(trigPinOne, OUTPUT);
+  digitalWrite(trigPinOne, LOW);
   Serial.begin(38400);
 
-  timestamp = "enter";
+  lcd.begin();
+  lcd.backlight();
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Customers: ");
+  lcd.setCursor(11, 0);
+  lcd.print(customers);
+
+  //timestamp = "enter";
 }
 
 //  Loop code.
 void loop() {
   //  Scan for objects.
-  digitalWrite(trigPin, LOW);
+  digitalWrite(trigPinOne, LOW);
   delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
+  digitalWrite(trigPinOne, HIGH);
   delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
+  digitalWrite(trigPinOne, LOW);
 
   //  Retrieve pulse duration.
-  duration = pulseIn(echoPin, HIGH);
+  durationOne = pulseIn(echoPinOne, HIGH);
+
+  pinMode(pingPin, OUTPUT);
+  digitalWrite(pingPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pingPin, LOW);
+
+  pinMode(pingPin, INPUT);
+  durationTwo = pulseIn(pingPin, HIGH);
 
   //  Calculate distance to object.
-  distance = duration*0.034/2;
+  distanceOne = durationOne*0.034/2;
+  distanceTwo = durationTwo*0.034/2;
 
   //  Act on results.
-  if (distance < 100) {
-    //  Turn on LED.
-    digitalWrite(ledPin, HIGH);
+  if (distanceOne < 100) {
+    ultrasonicOne = true;
+    if (timestamp.equals("")) {
+      timestamp = "enter";
+    }
     
-    Serial.println(timestamp);
-    delay(500);
+    //Serial.println(timestamp);
+    //Serial.println("distanceOne");
+    //Serial.println(distanceOne);
+    delay(50);
+  } else if (distanceTwo < 100) {
+    ultrasonicTwo = true;
+    if (timestamp.equals("")) {
+      timestamp = "leave";
+    }
+    
+    //Serial.println("distanceTwo");
+    //Serial.println(distanceTwo);
+    delay(50);
   } else {
-    //  If no object detected, turn off LED and wait.
-    digitalWrite(ledPin, LOW);
+    if (ultrasonicOne || ultrasonicTwo) {
+      timer++;
+    }
+    if (ultrasonicOne && ultrasonicTwo) {
+      if (timestamp != "") {
+        Serial.println(timestamp);
+        if (timestamp.equals("enter")) {
+          customers++;
+        }
+        else if (timestamp.equals("leave")) {
+          if (customers > 0) {
+            customers--;
+          }
+        }
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Customers: ");
+        lcd.setCursor(11, 0);
+        lcd.print(customers);
+      }
+      timer = 0;
+      ultrasonicOne = false;
+      ultrasonicTwo = false;
+      timestamp = "";
+    }
+    if (timer > 100) {
+      timer = 0;
+      ultrasonicOne = false;
+      ultrasonicTwo = false;
+      timestamp = "";
+      //Serial.println("trigger ended");
+    }
+    delay(10);
   }
 }
