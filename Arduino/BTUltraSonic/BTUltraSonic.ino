@@ -2,6 +2,7 @@
 //  BTUltraSonic.ino  --  Arduino source file.
 //  Revisions:
 //    2018-11-11  --  F.R. van der Meulen --  Created.
+//    2018-11-14  --  J. de Wilde         --  Edited.
 
 //  Librabies
 #include <Wire.h> 
